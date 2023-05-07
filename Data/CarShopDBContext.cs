@@ -9,7 +9,5 @@ namespace WebApplication1.Data
 
         public DbSet<Car> Cars { get; set; }
         public DbSet<Orders> Order { get; set; }
-
-
     }
 }

@@ -11,8 +11,8 @@ using WebApplication1.Data;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(CarShopDBContext))]
-    [Migration("20230427195414_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20230502154132_InitializeMigration")]
+    partial class InitializeMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,21 @@ namespace WebApplication1.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("CarOrders", b =>
+                {
+                    b.Property<int>("CarsCarId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CarsCarId", "OrderId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("CarOrders");
+                });
 
             modelBuilder.Entity("WebApplication1.Models.Car", b =>
                 {
@@ -78,6 +93,21 @@ namespace WebApplication1.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Order");
+                });
+
+            modelBuilder.Entity("CarOrders", b =>
+                {
+                    b.HasOne("WebApplication1.Models.Car", null)
+                        .WithMany()
+                        .HasForeignKey("CarsCarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebApplication1.Models.Orders", null)
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

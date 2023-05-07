@@ -1,10 +1,6 @@
-﻿using Microsoft.AspNetCore.SignalR;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace WebApplication1.Models
+﻿namespace WebApplication1.DTO
 {
-    public class Car
+    public class CarDTO
     {
         public int CarId { get; set; }
         public string Name { get; set; }// Марка
@@ -12,8 +8,5 @@ namespace WebApplication1.Models
         public string Model { get; set; }
         public double Cost { get; set; }
         public string Color { get; set; }
-
-        public List<Orders>? orders { get; set; } = null;
-
     }
 }

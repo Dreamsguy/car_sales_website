@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.Models;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Intrinsics.X86;
+using WebApplication1.DTO;
 
 namespace WebApplication1.Controllers
 {
@@ -21,9 +25,18 @@ namespace WebApplication1.Controllers
 
         [HttpPost]// Создание машин из БД
 
-        public async Task<IActionResult> AddCar([FromBody] Car cars)
+        public async Task<IActionResult> AddCar([FromBody] CreateCarDTO cars)
         {
-            await _context.Cars.AddAsync(cars);
+            Car car = new Car 
+            { 
+                Name = cars.Name,
+                Model = cars.Model,
+                Horsepower = cars.Horsepower,
+                Cost = cars.Cost,
+                Color = cars.Color
+            };
+            
+            await _context.Cars.AddAsync(car);
             await _context.SaveChangesAsync();
 
             return Ok(cars);
@@ -83,5 +96,7 @@ namespace WebApplication1.Controllers
 
             return Ok(cars);
         }
+
+
     }
 }
