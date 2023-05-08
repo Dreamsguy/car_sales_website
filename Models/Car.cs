@@ -12,7 +12,7 @@ namespace WebApplication1.Models
         public string Model { get; set; }
         public double Cost { get; set; }
         public string Color { get; set; }
-
+        public int ordersId { get; set; }
         public List<Orders>? orders { get; set; } = null;
 
     }

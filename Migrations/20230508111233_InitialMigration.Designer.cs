@@ -11,8 +11,8 @@ using WebApplication1.Data;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(CarShopDBContext))]
-    [Migration("20230502154132_InitializeMigration")]
-    partial class InitializeMigration
+    [Migration("20230508111233_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,12 +29,12 @@ namespace WebApplication1.Migrations
                     b.Property<int>("CarsCarId")
                         .HasColumnType("int");
 
-                    b.Property<int>("OrderId")
+                    b.Property<int>("ordersId")
                         .HasColumnType("int");
 
-                    b.HasKey("CarsCarId", "OrderId");
+                    b.HasKey("CarsCarId", "ordersId");
 
-                    b.HasIndex("OrderId");
+                    b.HasIndex("ordersId");
 
                     b.ToTable("CarOrders");
                 });
@@ -65,6 +65,9 @@ namespace WebApplication1.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ordersId")
+                        .HasColumnType("int");
+
                     b.HasKey("CarId");
 
                     b.ToTable("Cars");
@@ -79,15 +82,12 @@ namespace WebApplication1.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("date")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("status")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -105,7 +105,7 @@ namespace WebApplication1.Migrations
 
                     b.HasOne("WebApplication1.Models.Orders", null)
                         .WithMany()
-                        .HasForeignKey("OrderId")
+                        .HasForeignKey("ordersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

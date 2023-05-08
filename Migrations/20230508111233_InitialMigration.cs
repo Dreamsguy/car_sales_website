@@ -5,7 +5,7 @@
 namespace WebApplication1.Migrations
 {
     /// <inheritdoc />
-    public partial class InitializeMigration : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,7 +20,8 @@ namespace WebApplication1.Migrations
                     Horsepower = table.Column<int>(type: "int", nullable: false),
                     Model = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Cost = table.Column<double>(type: "float", nullable: false),
-                    Color = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Color = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ordersId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -33,9 +34,9 @@ namespace WebApplication1.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    date = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    status = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    date = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    status = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -47,11 +48,11 @@ namespace WebApplication1.Migrations
                 columns: table => new
                 {
                     CarsCarId = table.Column<int>(type: "int", nullable: false),
-                    OrderId = table.Column<int>(type: "int", nullable: false)
+                    ordersId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CarOrders", x => new { x.CarsCarId, x.OrderId });
+                    table.PrimaryKey("PK_CarOrders", x => new { x.CarsCarId, x.ordersId });
                     table.ForeignKey(
                         name: "FK_CarOrders_Cars_CarsCarId",
                         column: x => x.CarsCarId,
@@ -59,17 +60,17 @@ namespace WebApplication1.Migrations
                         principalColumn: "CarId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CarOrders_Order_OrderId",
-                        column: x => x.OrderId,
+                        name: "FK_CarOrders_Order_ordersId",
+                        column: x => x.ordersId,
                         principalTable: "Order",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CarOrders_OrderId",
+                name: "IX_CarOrders_ordersId",
                 table: "CarOrders",
-                column: "OrderId");
+                column: "ordersId");
         }
 
         /// <inheritdoc />
