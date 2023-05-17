@@ -80,9 +80,9 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPut]// Изменение машины в БД
-        [Route("{id:int}")]
+        [Route("{Color}")]
 
-        public async Task<IActionResult> UpdateCar([FromRoute] int id, Car car)
+        public async Task<IActionResult> UpdateCar([FromRoute] string Color, Car car)
         {
             _context.Cars.Update(car);
             await _context.SaveChangesAsync();
@@ -91,10 +91,10 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-        [Route("{Name}")]
-        public async Task<IActionResult> ShowAllCarsTheSameName([FromRoute] string Name)
+        [Route("{Color}")]
+        public async Task<IActionResult> ShowAllCarsTheSameName([FromRoute] string Color)
         {
-            var cars = await _context.Cars.Where(c => c.Name == Name).ToListAsync();
+            var cars = await _context.Cars.Where(c => c.Color == Color).ToListAsync();
 
             if (cars == null)
             {
