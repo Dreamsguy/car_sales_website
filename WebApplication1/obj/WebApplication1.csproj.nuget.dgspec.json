@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Просто по рофлу\\WebApplication1\\WebApplication1.csproj": {}
+    "D:\\Сайт по продажам автомобилей\\car_sales_website\\WebApplication1.csproj": {}
   },
   "projects": {
-    "D:\\Просто по рофлу\\WebApplication1\\WebApplication1.csproj": {
+    "D:\\Сайт по продажам автомобилей\\car_sales_website\\WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Просто по рофлу\\WebApplication1\\WebApplication1.csproj",
+        "projectUniqueName": "D:\\Сайт по продажам автомобилей\\car_sales_website\\WebApplication1.csproj",
         "projectName": "WebApplication1",
-        "projectPath": "D:\\Просто по рофлу\\WebApplication1\\WebApplication1.csproj",
+        "projectPath": "D:\\Сайт по продажам автомобилей\\car_sales_website\\WebApplication1.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Просто по рофлу\\WebApplication1\\obj\\",
+        "outputPath": "D:\\Сайт по продажам автомобилей\\car_sales_website\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

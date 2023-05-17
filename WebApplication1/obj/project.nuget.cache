@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Z5VBuwxsJesBrVbqQgBDBm2GiVwdy1rHJzbQNARRlQS2CfKPfF5Xr/QE0IDo2FqGqlSGQibwjZ6IdTztclTHhQ==",
+  "dgSpecHash": "LqZ3Ndxb6wkboTBKIbCNpZOeXPEiDUW0JmGA0AGJxXmQQG6lnzLH+H6FKW0VMd7KGKuHJLybxTZd4KtNO/yWLw==",
   "success": true,
-  "projectFilePath": "D:\\Просто по рофлу\\WebApplication1\\WebApplication1.csproj",
+  "projectFilePath": "D:\\Сайт по продажам автомобилей\\car_sales_website\\WebApplication1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
