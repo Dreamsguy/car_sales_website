@@ -4,8 +4,8 @@
     {
         public string Name { get; set; }// Марка
         public string Model { get; set; }
-        public int Horsepower { get; set; }
+        public string Horsepower { get; set; }
         public string Color { get; set; }
-        public double Cost { get; set; }
+        public string Cost { get; set; }
     }
 }

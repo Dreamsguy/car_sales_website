@@ -21,7 +21,28 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet] // Получение всех машин из базы данных
-        public async Task<IActionResult> GetAllCars() => Ok(await _context.Cars.ToListAsync());
+        public async Task<IActionResult> GetAllCars() 
+        {
+            List<CreateCarDTO> CreateCar = new List<CreateCarDTO>();//список объектов машин
+            List <Car> Cars = await _context.Cars.ToListAsync();
+
+            foreach(var Car in Cars) 
+            {
+                CreateCarDTO car = new CreateCarDTO() 
+                { 
+                    Name = Car.Name, 
+                    Model = Car.Model, 
+                    Horsepower = Car.Horsepower.ToString(), 
+                    Color = Car.Color,
+                    Cost = Car.Cost.ToString()
+                    };// создание объекта машины и инициализация данных 
+
+                CreateCar.Add(car);
+            }
+           
+            return Ok(CreateCar);  
+
+        } 
 
         [HttpPost]// Создание машин из БД
 
@@ -31,8 +52,8 @@ namespace WebApplication1.Controllers
             { 
                 Name = cars.Name,
                 Model = cars.Model,
-                Horsepower = cars.Horsepower,
-                Cost = cars.Cost,
+                Horsepower = Convert.ToInt32(cars.Horsepower),
+                Cost = Convert.ToDouble(cars.Cost),
                 Color = cars.Color
             };
             
