@@ -23,19 +23,20 @@ namespace WebApplication1.Controllers
         [HttpGet] // Получение всех машин из базы данных
         public async Task<IActionResult> GetAllCars() 
         {
-            List<CreateCarDTO> CreateCar = new List<CreateCarDTO>();//список объектов машин
+            List<CarDTO> CreateCar = new List<CarDTO>();//список объектов машин
             List <Car> Cars = await _context.Cars.ToListAsync();
 
             foreach(var Car in Cars) 
             {
-                CreateCarDTO car = new CreateCarDTO() 
+                CarDTO car = new CarDTO() 
                 { 
+                    CarId = Car.CarId,
                     Name = Car.Name, 
                     Model = Car.Model, 
-                    Horsepower = Car.Horsepower.ToString(), 
+                    Horsepower = Car.Horsepower, 
                     Color = Car.Color,
-                    Cost = Car.Cost.ToString()
-                    };// создание объекта машины и инициализация данных 
+                    Cost = Car.Cost
+                };// создание объекта машины и инициализация данных 
 
                 CreateCar.Add(car);
             }
@@ -48,6 +49,7 @@ namespace WebApplication1.Controllers
 
         public async Task<IActionResult> AddCar([FromBody] CreateCarDTO cars)
         {
+            
             Car car = new Car 
             { 
                 Name = cars.Name,
@@ -80,28 +82,36 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPut]// Изменение машины в БД
-        [Route("{Color}")]
+        [Route("{id:int}")]
 
-        public async Task<IActionResult> UpdateCar([FromRoute] string Color, Car car)
+        public async Task<IActionResult> UpdateCar([FromRoute] int id, CarDTO car)
         {
-            _context.Cars.Update(car);
+            var CurrentCar = await _context.Cars.FindAsync(id);
+
+            CurrentCar.Model = car.Model;
+            CurrentCar.Name = car.Name;
+            CurrentCar.Horsepower = car.Horsepower;
+            CurrentCar.Color = car.Color;
+            CurrentCar.Cost = car.Cost;
+
+            _context.Cars.Update(CurrentCar);
             await _context.SaveChangesAsync();
 
             return Ok(car);
         }
 
         [HttpGet]
-        [Route("{Color}")]
-        public async Task<IActionResult> ShowAllCarsTheSameName([FromRoute] string Color)
+        [Route("{id:int}")]
+        public async Task<IActionResult> GetCarById([FromRoute] int id)
         {
-            var cars = await _context.Cars.Where(c => c.Color == Color).ToListAsync();
+            var car = await _context.Cars.FindAsync(id);
 
-            if (cars == null)
+            if (car == null)
             {
                 return NotFound();
             }
 
-            return Ok(cars);
+            return Ok(car);
         }
 
         [HttpGet]
