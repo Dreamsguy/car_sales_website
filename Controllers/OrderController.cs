@@ -81,31 +81,31 @@ namespace WebApplication1.Controllers
         //    return Ok(orders);
         //}
 
-       // [HttpPut]
-       // [Route("{Name}/{Model}")]
-       // public async Task<IActionResult> UpdateOrder([FromRoute] int Id, string Name, string Model)
-       // {
-       //     var order = await _context.Order.FindAsync(Id); // получаем объект Order из базы данных
+        [HttpPut]
+        [Route("{Name}/{Model}")]
+        public async Task<IActionResult> UpdateOrder([FromRoute] int Id, string Name, string Model)
+        {
+            var order = await _context.Order.FindAsync(Id); // получаем объект Order из базы данных
 
-       //     if (order == null)
-       //     {
-       //         return NotFound();
-       //     }
+            if (order == null)
+            {
+                return NotFound();
+            }
 
-       //     var car = await _context.Cars.FirstOrDefaultAsync(c => c.Name == Name && c.Model == Model);
+            var car = await _context.Cars.FirstOrDefaultAsync(c => c.Name == Name && c.Model == Model);
 
-       //     if (car == null)
-       //     {
-       //         return NotFound();
-       //     }
+            if (car == null)
+            {
+                return NotFound();
+            }
 
-       //     order.Cars.Add(car); // добавляем объект Car в коллекцию Cars объекта Order
+            order.Cars.Add(car); // добавляем объект Car в коллекцию Cars объекта Order
 
-       //     _context.Order.Update(order);
-       //     await _context.SaveChangesAsync();
+            _context.Order.Update(order);
+            await _context.SaveChangesAsync();
 
-       //     return Ok(order);
-       //}
+            return Ok(order);
+        }
 
     }
 }
